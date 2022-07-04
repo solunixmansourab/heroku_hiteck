@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% include 'account/partials/breadcrumb.html.twig' %}
+
+    <div class="shop-checkout py-120">
+        <div class="container">
+            <div class="row">
+
+                {% include 'account/partials/menu_left.html.twig' %}
+
+                <div class="col-lg-8">
+                    <div class="checkout-widget">
+                        <h4 class="checkout-widget-title">Informations du profil</h4>
+                        <div class="checkout-form">
+                            {{ form_start(form) }}
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            {{ form_row(form.firstName, {attr: {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            {{ form_row(form.lastName, {attr: {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            {{ form_row(form.email, {attr: {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Votre Téléphone</label>
+                                            <input type="text" class="form-control" placeholder="Your Phone">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-end mt-40">
+                                    <button type="submit" class="theme-btn">Enregistrer les modifications <i class="fas fa-save"></i></button>
+                                </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

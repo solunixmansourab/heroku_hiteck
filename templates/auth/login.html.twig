@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Hitech Solutions | Se connecter à l'espace membre" %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    
+    <style>
+        .asterix, .login-small-title {
+            color: #f77700;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    <div class="site-breadcrumb" style="background: url({{ asset('template/img/breadcrumb/breadcrumb.jpg') }})">
+        <div class="container">
+            <h2 class="breadcrumb-title">Se connecter</h2>
+            <ul class="breadcrumb-menu">
+                <li><a href="{{ path('app_home') }}">Accueil</a></li>
+                <li class="active">Se connecter</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="login-area py-120">
+        <div class="container">
+            <div class="col-md-5 mx-auto">
+                <div class="login-form">
+
+                    <div class="login-header">
+                        <img src="{{ asset('template/img/logo/h_logo.jpg') }}" alt="Logo">
+                        <p class="login-small-title">Veuillez entrer vos identifiants</p>
+                    </div>
+
+                    <form action="#" method="post">
+                        {% if error %}
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+                        <div class="form-group">
+                            <label for="inputEmail">Adresse email <span class="asterix">*<span></label>
+                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" autofocus placeholder="Saisir votre email">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword">Mot de passe <span class="asterix">*<span></label>
+                            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Saisir votre mot de passe">
+                        </div>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                        <div class="d-flex justify-content-between mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="remember" name="_remember_me">
+                                <label class="form-check-label" for="remember">
+                                    Rester connecté
+                                </label>
+                            </div>
+                            <a href="{{ path('app_account_reset_password') }}" class="forgot-pass">Mot de passe oublié?</a>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <button type="submit" class="theme-btn"><i class="far fa-sign-in"></i> Se connecter</button>
+                        </div>
+                    </form>
+
+                    <div class="login-footer">
+                        <p>Vous n'avez pas encore de compte? 😱 <strong><a href="{{ path('app_register') }}" style="text-decoration: underline">Créer un compte</a></strong></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

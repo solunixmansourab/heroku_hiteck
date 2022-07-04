@@ -1,0 +1,62 @@
+<footer class="footer-area">
+    <div class="footer-shape">
+        <img class="footer-shape-1" src="{{ asset('template/img/shape/01.png') }}" alt="shape">
+        <img class="footer-shape-2" src="{{ asset('template/img/shape/02.png') }}" alt="shape">
+    </div>
+    <div class="footer-widget">
+        <div class="container">
+            <div class="row footer-widget-wrapper pt-100 pb-70">
+                <div class="col-md-6 col-lg-4">
+                    <div class="footer-widget-box about-us">
+                        <a href="#" class="footer-logo">
+                            <img src="{{ asset('template/img/logo/logo-light.png') }}" alt="">
+                        </a>
+                        <p class="mb-20">
+                            Nous intervenons dans la conception, la fourniture, la formation, la maintenance des
+                            solutions solaire photovoltaïque et le service après-vente de solutions basées sur des
+                            produits et services de très hautes technologies.
+                        </p>
+                        <ul class="footer-social">
+                            <li><a href="https://web.facebook.com/hts.niger"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/edmond-doudou-moctar-36183596"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="https://twitter.com/hts_niger"><i class="fab fa-twitter"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="footer-widget-box">
+                        <h4 class="footer-widget-title">Contacts</h4>
+                        <ul class="footer-contact">
+                            <li><i class="far fa-map-marker-alt"></i>Quartier Bobiel, non loin du rond point Francophonie</li>
+                            <li><a href="tel:+21236547898"><i class="far fa-phone"></i>+227 90 32 65 18</a></li>
+                            <li><a href="#"><i class="far fa-envelope"></i>info@hitech-niger.com</a>
+                            </li>
+                            <li><i class="far fa-clock"></i>Lun - Vend (08H - 18H)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="footer-widget-box list">
+                        <h4 class="footer-widget-title">Newsletter</h4>
+                        <div class="footer-newsletter">
+                            <p>Abonnez-vous à notre newsletter pour recevoir les dernières nouvelles</p>
+                            <div class="subscribe-form">
+                                {% include 'newsletter/index.html.twig' %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="container">
+            <div class="align-center">
+                <p class="copyright-text text-center">
+                    &copy; Copyright <span id="date"></span> <a href="#">Hi-tech Solutions</a> Tous droits reservés | Développer par
+                    <a href="https://www.solunixne.com/">Solunix-niger.</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

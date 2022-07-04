@@ -1,0 +1,115 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+
+<div class="wrapper">
+
+    {% include 'admin/layouts/header.html.twig' %}
+
+    {% include 'admin/layouts/aside.html.twig' %}
+
+    {% block content %}
+        <main class="page-content">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xxl-4">
+                <div class="col">
+                    <div class="card radius-10">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="">
+                                    <p class="mb-1">Articles</p>
+                                    <h4 class="mb-0 text-orange">645</h4>
+                                </div>
+                                <div class="ms-auto fs-2 text-orange">
+                                    <i class="bi bi-book"></i>
+                                </div>
+                            </div>
+                            <div class="progress radius-10 my-2" style="height:5px;">
+                                <div class="progress-bar bg-orange" role="progressbar" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card radius-10">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="">
+                                    <p class="mb-1">Messages</p>
+                                    <h4 class="mb-0 text-primary">845</h4>
+                                </div>
+                                <div class="ms-auto fs-2 text-primary">
+                                    <i class="bi bi-envelope"></i>
+                                </div>
+                            </div>
+                            <div class="progress radius-10 my-2" style="height:5px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card radius-10">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="">
+                                    <p class="mb-1">Produits</p>
+                                    <h4 class="mb-0 text-purple">845</h4>
+                                </div>
+                                <div class="ms-auto fs-2 text-purple">
+                                    <i class="bi bi-shop"></i>
+                                </div>
+                            </div>
+                            <div class="progress radius-10 my-2" style="height:5px;">
+                                <div class="progress-bar bg-purple" role="progressbar" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card radius-10">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="">
+                                    <p class="mb-1">Commandes</p>
+                                    <h4 class="mb-0 text-pink">845</h4>
+                                </div>
+                                <div class="ms-auto fs-2 text-pink">
+                                    <i class="bi bi-credit-card"></i>
+                                </div>
+                            </div>
+                            <div class="progress radius-10 my-2" style="height:5px;">
+                                <div class="progress-bar bg-pink" role="progressbar" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card radius-10">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="">
+                                    <p class="mb-1">Membres</p>
+                                    <h4 class="mb-0 text-success">845</h4>
+                                </div>
+                                <div class="ms-auto fs-2 text-success">
+                                    <i class="bi bi-people"></i>
+                                </div>
+                            </div>
+                            <div class="progress radius-10 my-2" style="height:5px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    {% endblock %}
+
+</div>
+
+{% endblock %}

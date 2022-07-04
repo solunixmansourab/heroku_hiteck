@@ -1,0 +1,24 @@
+{{ form_start(form) }}
+<div class="card-header py-3 bg-transparent">
+    <div class="d-sm-flex align-items-center">
+        <h5 class="mb-2 mb-sm-0">Ajouter ou Modifier</h5>
+        <div class="ms-auto">
+            <button type="submit" class="btn btn-primary" formnovalidate>{{ button_label|default('Sauvegarder') }}</button>
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <div class="row g-3">
+        <div class="col-12 col-lg-8">
+            <div class="card shadow-none bg-light border">
+                <div class="card-body">
+                    <div class="col-12">
+                        {{ form_row(form.name, {attr: {'class': 'form-control'}}) }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div><!--end row-->
+</div>
+{{ form_end(form) }}

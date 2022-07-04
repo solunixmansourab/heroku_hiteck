@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Notre blog | Retrouvez tous nos articles' %}
+
+{% block body %}
+
+    <div class="site-breadcrumb" style="background: url({{ asset('template/img/breadcrumb/breadcrumb.jpg') }})">
+        <div class="container">
+            <h2 class="breadcrumb-title">Notre Blog</h2>
+            <ul class="breadcrumb-menu">
+                <li><a href="{{ path('app_home') }}">Accueil</a></li>
+                <li class="active">Blog</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="blog-area py-120">
+        <div class="container">
+            <div class="row">
+                {% for post in posts %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="blog-item">
+                        <div class="blog-item-img">
+                            <img src="{{ asset('/uploads/images/products/covers/'~post.postImage) }}" alt="Thumb" width="345" height="241">
+                        </div>
+                        <div class="blog-item-info">
+                            <div class="blog-item-meta">
+                                <ul>
+                                    <li><i class="far fa-user-circle"></i> Créé par {{ post.user.fullName }}</li>
+                                    <li><i class="far fa-calendar-alt"></i> {{ post.createdAt|ago(locale='fr') }}</li>
+                                </ul>
+                            </div>
+                            <h4 class="blog-title">
+                                <a href="{{ path('app_blog_detail', {slug: post.slug}) }}">{{ post.title|capitalize }}</a>
+                            </h4>
+                            <p>
+                                {{ post.excerpt }} ...
+                            </p>
+                            <a class="blog-btn" href="{{ path('app_blog_detail', {slug: post.slug}) }}">Lire Plus<i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                {% else %}
+                    <div class="text-center">
+                        <h2>Notre blog est vide pour le moment.</h2>
+                        <small>Restez informé sur notre page facebook</small>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="navigation">
+                {{ knp_pagination_render(posts, 'layouts/pagination_test.html.twig') }}
+            </div>
+            
+        </div>
+    </div>
+
+{% endblock %}

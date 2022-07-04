@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Hi-tech Solutions | Le spécialiste en energie renouvelable{% endblock %}</title>
+
+        {% block stylesheets %}
+
+            <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/logo/favicon.png') }}">
+            <link rel="stylesheet" href="{{ asset('template/css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('template/css/all-fontawesome.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('template/css/flaticon.css') }}">
+            <link rel="stylesheet" href="{{ asset('template/css/animate.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('template/css/magnific-popup.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('template/css/owl.carousel.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('template/css/jquery-ui.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('template/css/flex-slider.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('template/css/style.css') }}">
+
+            <link rel="stylesheet" href="{{ asset('assets/css/account.css') }}">
+
+            {{ encore_entry_link_tags('app') }}
+            {{ encore_entry_link_tags('notyf') }}
+
+        {% endblock %}
+    </head>
+<body>
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {% include 'layouts/header.html.twig' %}
+
+        <div class="main">
+            {% block body %}{% endblock %}
+        </div>
+
+        {% include 'layouts/footer.html.twig' %}
+
+        {% block javascripts %}
+        
+            <script src="{{ asset('template/js/jquery-3.6.0.min.js') }}"></script>
+            <script src="{{ asset('template/js/modernizr.min.js') }}"></script>
+            <script src="{{ asset('template/js/bootstrap.bundle.min.js') }}"></script>
+            <script src="{{ asset('template/js/imagesloaded.pkgd.min.js') }}"></script>
+            <script src="{{ asset('template/js/jquery.magnific-popup.min.js') }}"></script>
+            <script src="{{ asset('template/js/isotope.pkgd.min.js') }}"></script>
+            <script src="{{ asset('template/js/jquery.appear.min.js') }}"></script>
+            <script src="{{ asset('template/js/jquery.easing.min.js') }}"></script>
+            <script src="{{ asset('template/js/owl.carousel.min.js') }}"></script>
+            <script src="{{ asset('template/js/counter-up.js') }}"></script>
+            <script src="{{ asset('template/js/masonry.pkgd.min.js') }}"></script>
+            <script src="{{ asset('template/js/wow.min.js') }}"></script>
+            <script src="{{ asset('template/js/flex-slider.js') }}"></script>
+            <script src="{{ asset('template/js/jquery-ui.min.js') }}"></script>
+            <script src="{{ asset('template/js/main.js') }}"></script>
+            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('notif') }}
+
+        {% endblock %}
+    </body>
+</html>

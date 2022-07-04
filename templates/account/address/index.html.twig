@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% include 'account/partials/breadcrumb.html.twig' %}
+
+    <div class="shop-checkout py-120">
+        <div class="container">
+            <div class="row">
+                {% include 'account/partials/menu_left.html.twig' %}
+
+                <div class="col-lg-8">
+                    <div class="checkout-widget">
+                        <h4 class="checkout-widget-title text-center mb-5 mt-3"><i class="far fa-map-marker-alt"></i> Gérer vos adresses de livraison!</h4>
+                        <div class="mb-3 text-end">
+                            <a href="{{ path('app_address_new') }}" class="theme-btn">Ajouter une nouvelle adresse <i class="far fa-map-marker-plus"></i></a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="table-light">
+                                <tr>
+                                    <td><strong>ID</strong></td>
+                                    <td><strong>Nom</strong></td>
+                                    <td><strong>Prénom</strong></td>
+                                    <td><strong>Email</strong></td>
+                                    <td><strong>Téléphone</strong></td>
+                                    <td><strong>Adresse</strong></td>
+                                    <td><strong>Actions</strong></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for address in addresses %}
+                                <tr>
+                                    <td>{{ address.id }}</td>
+                                    <td>{{ address.firstName }}</td>
+                                    <td>{{ address.lastName }}</td>
+                                    <td>{{ address.email }}</td>
+                                    <td>
+                                        <span class="badge bg-success">{{ address.phone }}</span>
+                                    </td>
+                                    <td>
+                                        <span data-bs-toggle="modal" data-bs-target="#exampleModal">adresse...</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <a href="{{ path('app_order_show') }}" class="px-1"><i class="fas fa-eye"></i></a>
+                                            <a href="{{ path('app_address_edit', {id: address.id}) }}" class="px-1"><i class="fas fa-edit"></i></a>
+                                            <a href="#" class="text-danger px-1"><i class="fas fa-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

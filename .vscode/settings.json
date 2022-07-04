@@ -1,0 +1,12 @@
+{
+    "html.format.contentUnformatted": "",
+    "emmet.preferences": {
+    },
+    "files.associations": {
+        ".html": "twig"
+    },
+    "emmet.excludeLanguages": [
+        "twig", "html"
+    ]
+        
+}

@@ -1,0 +1,24 @@
+{% extends 'admin/base.html.twig' %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <style>
+        .partner-image {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #e9e9e9;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    {% include 'admin/layouts/header.html.twig' %}
+
+    {% include 'admin/layouts/aside.html.twig' %}
+
+    {% include 'partners/index.html.twig' %}
+
+{% endblock %}

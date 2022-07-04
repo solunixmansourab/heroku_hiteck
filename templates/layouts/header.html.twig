@@ -1,0 +1,107 @@
+{% set productQuantity = app.session.get('panier') %}
+<header class="header">
+    <div class="header-top">
+        <div class="container">
+            <div class="header-top-wrapper">
+                <div class="header-top-left">
+                    <div class="header-top-contact">
+                        <ul>
+                            <li><a href="tel:+21236547898"><i class="far fa-phone"></i>+227 90 32 65 18</a></li>
+                            <li><a href="#"><i class="far fa-envelope"></i>info@hitech-niger.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="header-top-right">
+                    <div class="header-top-lang">
+                        <div class="dropdown">
+                            <button class="dropdown-toggle" type="button" id="lang" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="far fa-globe-americas"></i>Langues
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="lang">
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        <img src="{{ asset('template/img/lang/english.png') }}" alt=""> English
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        <img src="{{ asset('template/img/lang/french.png') }}" alt=""> Français
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="header-top-social">
+                        <span>Suivrez-nous sur les reseaux sociaux :</span>
+                        <a href="https://web.facebook.com/hts.niger"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/in/edmond-doudou-moctar-36183596"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://twitter.com/hts_niger"><i class="fab fa-twitter"></i></a>
+                        <a href="@hts_niger"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-navigation">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="{{ path('app_home') }}">
+                    <img src="{{ asset('template/img/logo/h_logo.jpg') }}" alt="logo">
+                </a>
+                <div class="mobile-menu-right">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"><i class="far fa-stream"></i></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="main_nav">
+                    <ul class="navbar-nav m-auto">
+                        <li class="nav-item"><a class="nav-link" href="{{ path('app_home') }}">Accueil</a></li>
+                        <li class="nav-item dropdown"><a class="nav-link" href="{{ path('app_services') }}">Services</a></li>
+                        <li class="nav-item dropdown"><a class="nav-link" href="{{ path('app_shop') }}">Boutique</a></li>
+                        <li class="nav-item dropdown"><a class="nav-link" href="{{ path('app_blog') }}">Blog</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="{{ path('app_about') }}" data-bs-toggle="dropdown">A propos</a>
+                            <ul class="dropdown-menu fade-up">
+                                <li><a href="{{ path('app_about') }}" class="dropdown-item">Notre Société</a></li>
+                                <li><a href="{{ path('app_about_mission') }}" class="dropdown-item">Nos Objectifs & Missions</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="{{ path('app_contact') }}">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="header-nav-right m-auto">
+                        {% if app.user %}
+                            <ul class="navbar-nav">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="{{ path('app_account') }}" data-bs-toggle="dropdown">
+                                        <i class="far fa-user-circle fa-lg px-1"></i>
+                                        {{ app.user.firstname }}
+                                    </a>
+                                    <ul class="dropdown-menu fade-up">
+                                        <li><a href="{{ path('app_account') }}" class="dropdown-item"><i class="fas fa-user-alt"></i>  Mon Compte</a></li>
+                                        <li><a href="{{ path('app_logout') }}" class="dropdown-item"><i class="fas fa-sign-out"></i>  Déconnexion</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        {% else %}
+                            <div class="header-nav-search">
+                                <a href="{{ path('app_login') }}" class="search-box-outer"><i class="far fa-user-circle fa-lg"></i></a>
+                            </div>
+                        {% endif %}
+                        <div class="header-cart">
+                            <a href="{{ path('app_shop_cart') }}"><i class="far fa-shopping-cart"></i>
+                                {% if productQuantity|length > 0 %}
+                                <span>
+                                    {{ productQuantity|length }}
+                                </span>
+                                {% endif %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+

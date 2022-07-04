@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <style>
+        .product-title {
+            color:#253745;
+            font-size: 16px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    {% set resultat = products|length %}
+
+    <div class="site-breadcrumb" style="background: url({{ asset('template/img/breadcrumb/breadcrumb.jpg') }})">
+        <div class="container">
+            <h2 class="breadcrumb-title">Notre boutique</h2>
+            <ul class="breadcrumb-menu">
+                <li><a href="index-2.html">Accueil</a></li>
+                <li class="active">Boutique</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="shop-area py-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    {{ form_start(form) }}
+                    <div class="shop-sidebar">
+                        <div class="shop-widget">
+                            <div class="shop-search-form">
+                                <h4 class="shop-widget-title">Rechercher</h4>
+                                {{ form_row(form.q, {attr: {class: 'form-control'}}) }}
+                            </div>
+                        </div>
+
+                        <div class="shop-widget">
+
+                            <h4 class="shop-widget-title">Catégories</h4>
+                            {% for choice in form.categories.vars.choices %}
+                                <div class="form-check">
+                                    <input type="checkbox" id="{{ form.categories.vars.name }}_{{ choice.value }}" name="{{ form.categories.vars.name }}" value="{{ choice.value }}" class="form-check-input"/>
+                                    <label for="{{ form.categories.vars.name }}_{{ choice.value }}" class="form-check-label">{{ choice.label|trans }}</label>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="shop-widget">
+                            <h4 class="shop-widget-title">Filtrer par prix</h4>
+                            <div class="price-range-box">
+                                <div class="price-range-input">
+                                    <input type="text" readonly id="price-amount">
+                                </div>
+                                <div class="price-range"></div>
+                            </div>
+                        </div>
+
+                        <div class="widget-banner mt-30 mb-50" style="background-image:url({{ asset('template/img/widget/banner.jpg') }})">
+                            <div class="banner-content">
+                                <h3>Get <span>35% Off</span> On All Products</h3>
+                                <a href="#" class="theme-btn">Buy Now<i class="fas fa-arrow-circle-right"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="col-md-12">
+                        <div class="shop-sort">
+                            <h5>({{ resultat }}) Résultats trouvés</h5>
+                            <div class="shop-sort-box">
+                                <select class="form-select">
+                                    <option value="1">Trier par</option>
+                                    <option value="2">Prix Minimum</option>
+                                    <option value="3">Prix Maximum</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for product in products %}
+                            <div class="col-md-6 col-lg-4">
+                                <div class="shop-item">
+                                    <div class="shop-item-img">
+                                        <img src="{{ asset('uploads/product_images/'~product.coverImage) }}" alt="">
+                                        <div class="shop-item-meta">
+                                            <a href="#"><i class="far fa-heart"></i></a>
+                                            <a href="#"><i class="far fa-shopping-cart"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="shop-item-info">
+                                        <h4 class="product-title">
+                                            <a href="{{ path('app_shop_detail', {slug: product.slug}) }}">{{ product.title }}</a>
+                                        </h4>
+                                        <div class="shop-item-price"><del>$50</del> ${{ product.price }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="navigation">
+                        {{ knp_pagination_render(products, 'layouts/pagination_test.html.twig') }}
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

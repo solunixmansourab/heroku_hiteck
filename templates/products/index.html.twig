@@ -1,0 +1,97 @@
+{% block content %}
+    <main class="page-content">
+
+        <!--breadcrumb-->
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="breadcrumb-title pe-3">Produits</div>
+            <div class="ps-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 p-0">
+                        <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Liste des produits</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="ms-auto">
+                <a href="{{ path('app_products_new') }}" class="btn btn-primary">Ajouter un produit</a>
+            </div>
+        </div>
+        <!--end breadcrumb-->
+
+        <div class="card">
+            <div class="card-header py-3">
+                <div class="row align-items-center m-0">
+                    <div class="col-md-4 col-12 me-auto mb-md-0 mb-3">
+                        <select class="form-select">
+                            <option>Toutes catégories</option>
+                            <option>Fashion</option>
+                            <option>Electronics</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 col-6">
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <select class="form-select">
+                            <option>Status</option>
+                            <option>Activés</option>
+                            <option>Désactivés</option>
+                            <option>Voir tous</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table align-middle table-striped">
+                        <tbody>
+                        {% for product in products %}
+                        <tr>
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox">
+                                </div>
+                            </td>
+                            <td class="productlist">
+                                <a class="d-flex align-items-center gap-2" href="#">
+                                    <div class="product-box">
+                                        <img src="{{ asset('uploads/product_images/'~product.coverImage ) }} " alt="">
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0 product-title">{{ product.title }}</h6>
+                                    </div>
+                                </a>
+                            </td>
+                            <td><span>${{ product.price }}</span></td>
+                            <td>
+                                {% for categpri in product.categories %}
+                                    <span class="badge rounded-pill alert-success">
+                                            {{ category.name }}                    
+                                    </span>
+                                {% endfor %}
+                            </td>
+                            <td><span>{{ product.createdAt|date }}</span></td>
+                            <td>
+                                <div class="d-flex align-items-center gap-3 fs-6">
+                                    <a href="#" class="text-primary"><i class="bi bi-eye-fill"></i></a>
+                                    <a href="{{ path('app_product_edit', {id: product.id}) }}" class="text-warning"><i class="bi bi-pencil-fill"></i></a>
+                                    <form method="post" action="{{ path('app_product_delete', {'id': product.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" style="display: inline-block;">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+                                        <button class="btn p-0"><span class="text-danger"><i class="bi bi-trash-fill"></i></span></button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!--pagination-->
+                {{ knp_pagination_render(products, 'admin/layouts/pagination.html.twig') }}
+                <!--end pagination-->
+            </div>
+        </div>
+    </main>
+{% endblock %}
+

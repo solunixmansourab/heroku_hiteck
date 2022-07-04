@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% set totalHT = total  %}
+    {% set prixTva = totalHT  * 19 / 100  %}
+    {% set totalTTC = totalHT + prixTva  %}
+
+    <div class="site-breadcrumb" style="background: url({{ asset('template/img/breadcrumb/breadcrumb.jpg') }})">
+        <div class="container">
+            <h2 class="breadcrumb-title">Votre Panier</h2>
+            <ul class="breadcrumb-menu">
+                <li><a href="{{ path('app_home') }}">Accueil</a></li>
+                <li class="active">Panier</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="shop-cart py-120">
+        <div class="container">
+            <div class="shop-cart-wrapper">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        {% if items|length > 0 %}
+                        <tr>
+                            <th>Image</th>
+                            <th>Titre</th>
+                            <th>Prix</th>
+                            <th>Quantité</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                        {% else %}
+                            <tr class="text-center">
+                                <th>Désolé... Votre panier est vide.</th>
+                            </tr>
+                        {% endif %}
+                        </thead>
+                        <tbody>
+                        {% for item in items %}
+                        <tr>
+                            <td>
+                                <div class="cart-img">
+                                    <img src="{{ asset('template/img/shop/01.png') }}" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <h5>{{ item.product.title }}</h5>
+                            </td>
+                            <td>
+                                <div class="cart-price">
+                                    <span>${{ item.product.price }}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cart-qty">
+                                    <a href="{{ path('app_cart_decrease', {id: item.product.id}) }}">
+                                        <i class="fal fa-minus"></i>
+                                    </a>
+                                    <input class="quantity" type="text" value="{{ item.quantity }}">
+                                    <a href="{{ path('app_cart_add', {id: item.product.id}) }}">
+                                        <i class="fal fa-plus"></i>
+                                    </a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cart-sub-total">
+                                    <span>${{ item.product.price * item.quantity }}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="{{ path('app_cart_remove', {id: item.product.id}) }}" class="cart-remove"><i class="far fa-times"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+
+                {% if items|length > 0 %}
+                <div class="cart-footer">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4">
+                        </div>
+                        <div class="col-md-6 col-lg-8">
+                            <div class="cart-summary">
+                                <ul>
+                                    <li><strong>Total HT:</strong> <span>${{ totalHT }}</span></li>
+                                    <li><strong>TVA:</strong> <span>+ 19%</span></li>
+                                    <li><strong>Prix de la TVA:</strong> <span>${{ prixTva }}</span></li>
+                                    <li class="cart-total"><strong>Total TTC:</strong> <span>${{ totalTTC }}</span></li>
+                                </ul>
+                                <div class="text-end mt-40">
+                                    <a href="{{ path('app_shop_checkout') }}" class="theme-btn">Continuer <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

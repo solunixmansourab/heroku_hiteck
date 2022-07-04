@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% include 'account/partials/breadcrumb.html.twig' %}
+
+    <div class="shop-checkout py-120">
+        <div class="container">
+            <div class="row">
+
+                {% include 'account/partials/menu_left.html.twig' %}
+
+                <div class="col-lg-8">
+                    <div class="checkout-widget">
+                        <h4 class="checkout-widget-title text-center mb-4 mt-4"><i class="far fa-map-marker-minus"></i> Modifier les informations de l'adresse!</h4>
+                        {{ include('account/address/_form.html.twig', {'button_label': 'Enregistrer les modifications'}) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

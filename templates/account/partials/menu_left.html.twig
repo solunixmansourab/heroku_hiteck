@@ -1,0 +1,33 @@
+<div class="col-lg-4">
+    <div class="checkout cart-summary">
+        <div class="text-center">
+            <img src="{{ asset('static_img/avatar.png') }}" class="img-thumbnail" alt="..." width="120" height="120">
+            <p class="text-muted mt-2">{{ user.email }}</p>
+        </div>
+        <div class="container mt-4">
+            <ul>
+                <li class="p-1 bg-light">
+                    <a href="{{ path('app_profil_index') }}"><i class="fas fa-user" style="padding-right: 10px;"></i>Profil</a>
+                </li>
+                <li class="p-1 bg-light">
+                    <a href="{{ path('app_address_index') }}"><i class="fas fa-address-book" style="padding-right: 10px;"></i>Adresses</a>
+                </li>
+                <li class="p-1 bg-light">
+                    <a href="{{ path('app_order_index') }}"><i class="fas fa-credit-card" style="padding-right: 10px;"></i>Commandes</a>
+                </li>
+                <li class="p-1 bg-light">
+                    <a href="{{ path('app_change_password') }}"><i class="fas fa-user-edit" style="padding-right: 10px;"></i>Modifier mot de passe</a>
+                </li>
+                <li class="p-1 bg-light">
+                    <a href=""><i class="fas fa-envelope" style="padding-right: 10px;"></i>Ecrire à Hitech_solutions</a>
+                </li>
+            </ul>
+            <div class="mt-5">
+                <a href="" class="btn btn-danger btn-sm p-2">
+                    <i class="fas fa-trash" style="padding-right: 10px;"></i> Supprimer votre compte
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>

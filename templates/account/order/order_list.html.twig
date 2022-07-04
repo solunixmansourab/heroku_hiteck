@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    {% include 'account/partials/breadcrumb.html.twig' %}
+
+    <div class="shop-checkout py-120">
+        <div class="container">
+            <div class="row">
+
+                {% include 'account/partials/menu_left.html.twig' %}
+
+                <div class="col-lg-8">
+                    <div class="checkout-widget">
+                        <h4 class="checkout-widget-title text-center mb-4">Vos commandes</h4>
+
+                        <table class="table">
+                            <thead class="table-light">
+                                <tr>
+                                    <td><strong>ID</strong></td>
+                                    <td><strong>Client</strong></td>
+                                    <td><strong>Status</strong></td>
+                                    <td><strong>Date</strong></td>
+                                    <td><strong>Prix HT</strong></td>
+                                    <td><strong>Prix TTC</strong></td>
+                                    <td><strong>Actions</strong></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for order in orders %}
+                                <tr>
+                                    <td>1</td>
+                                    <td>{{ order.customer.firstName }} {{ order.customer.lastName }}</td>
+                                    <td>
+                                        <span class="badge bg-info">En cours ...</span>
+                                    </td>
+                                    <td>{{ order.createdAt|date("Y-m-d") }}</td>
+                                    <td>{{ order.orderPrice }} Fcfa</td>
+                                    {% set tva = order.orderPrice * 19 / 100 %}
+                                    {% set ptcc = order.orderPrice + tva %}
+                                    <td>
+                                        <span class="badge bg-dark">{{ ptcc }} Fcfa</span>
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('app_order_show') }}" class="px-1 text-end"><i class="fas fa-eye"></i></a>
+                                        <a href="" class="px-1 text-end text-danger"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

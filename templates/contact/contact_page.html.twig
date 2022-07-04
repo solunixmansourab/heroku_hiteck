@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="site-breadcrumb" style="background: url({{ asset('template/img/breadcrumb/breadcrumb.jpg') }})">
+        <div class="container">
+            <h2 class="breadcrumb-title">Nos Coordonnées</h2>
+            <ul class="breadcrumb-menu">
+                <li><a href="{{ path('app_home') }}">Accueil</a></li>
+                <li class="active">Contact</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="contact-area py-120">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="row">
+                    <div class="col-md-8 align-self-center">
+                        <div class="contact-form">
+                            <div class="contact-form-header">
+                                <h2>Nous contacter</h2>
+                                <p>Faites-nous savoir en quoi nous pouvons vous aider, en nous envoyant un message à travers ce formulaire.
+                                    <span style="color: #f77700;">Veuillez à bien remplir tous les champs s'il vous plait.</span></p>
+                            </div>
+                            <form method="post" action="https://live.themewild.com/solarex/assets/php/contact.php" id="contact-form">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="name" placeholder="Nom et Prénom" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" name="email" placeholder="Email" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="subject" placeholder="Objet du message" required>
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="message" cols="30" rows="5" class="form-control" placeholder="Votre message"></textarea>
+                                </div>
+                                <button type="submit" class="theme-btn"> <i class="far fa-paper-plane"></i>Envoyer le message</button>
+                                <div class="col-md-12 mt-3">
+                                    <div class="form-messege text-success"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="contact-content">
+                            <div class="contact-info">
+                                <div class="contact-info-icon">
+                                    <i class="fal fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <h5>Siège Social</h5>
+                                    <p>Quartier Bobiel non loin du rond point Francophonie</p>
+                                </div>
+                            </div>
+                            <div class="contact-info">
+                                <div class="contact-info-icon">
+                                    <i class="fal fa-phone"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <h5>Téléphone</h5>
+                                    <p>+227 21 79 92 85</p>
+                                    <p>+227 90 32 65 18</p>
+                                    <p>+227 96 88 25 90</p>
+
+
+                                </div>
+                            </div>
+                            <div class="contact-info">
+                                <div class="contact-info-icon">
+                                    <i class="fal fa-envelope"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <h5>Email</h5>
+                                    <p>info@hitech-niger.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-info">
+                                <div class="contact-info-icon">
+                                    <i class="fal fa-clock"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <h5>Disponibité</h5>
+                                    <p>Lun - Vend (08H - 18H)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15515.835976878423!2d2.145015!3d13.538107!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2b2bd49e33fc0ef3!2sHi-Tech%20Solutions%20Sarl!5e0!3m2!1sfr!2sne!4v1654085505707!5m2!1sfr!2sne" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

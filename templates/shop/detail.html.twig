@@ -1,0 +1,140 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="site-breadcrumb" style="background: url({{ asset('template/img/breadcrumb/breadcrumb.jpg') }})">
+        <div class="container">
+            <h2 class="breadcrumb-title">Details du produit</h2>
+            <ul class="breadcrumb-menu">
+                <li><a href="{{ path('app_home') }}">Accueil</a></li>
+                <li class="active">Details du produit</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="shop-item-single py-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="item-gallery">
+                        <div class="flexslider-thumbnails">
+                            <ul class="slides">
+                                <li data-thumb="/template/img/shop/01.png" rel="adjustX:10, adjustY:">
+                                    <img src="{{ asset('template/img/shop/01.png') }}" alt="#">
+                                </li>
+                                <li data-thumb="/template/img/shop/02.png">
+                                    <img src="{{ asset('template/img/shop/02.png') }}" alt="#">
+                                </li>
+                                <li data-thumb="/template/img/shop/03.png">
+                                    <img src="{{ asset('template/img/shop/03.png') }}" alt="#">
+                                </li>
+                                <li data-thumb="/template/img/shop/04.png">
+                                    <img src="{{ asset('template/img/shop/04.png') }}" alt="#">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="single-item-info">
+                        <h4 class="single-item-title">{{ product.title }}</h4>
+                        <div class="single-item-price">
+                            <h4><span>${{ product.price }}</span></h4>
+                        </div>
+                        <p class="mb-4">{{ product.description }}</p>
+                        <div class="single-item-content">
+                            <h5>Status: <span>Disponible en stock</span></h5>
+                            <h5>Catégorie: <span>{{ product.category }}</span></h5>
+                        </div>
+                        <div class="single-item-action">
+                            <h5 class="title">Quantity:</h5>
+                            <div class="cart-qty">
+                                <button class="minus-btn"><i class="fal fa-minus"></i></button>
+                                <input class="quantity" type="text" value="#" disabled="">
+                                <button class="plus-btn"><i class="fal fa-plus"></i></button>
+                            </div>
+                            <div class="item-single-btn-area">
+                                <a href="{{ path('shop_add_cart', {id: product.id}) }}" class="theme-btn"><span class="far fa-shopping-cart"></span> Add to cart</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="related-item">
+                <div class="row">
+                    <div class="col-12 mx-auto">
+                        <div class="site-heading">
+                            <h2 class="site-title">Related <span>Items</span></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="shop-item">
+                            <div class="shop-item-img">
+                                <img src="{{ asset('template/img/shop/06.png') }}" alt="">
+                                <div class="shop-item-meta">
+                                    <a href="#"><i class="far fa-heart"></i></a>
+                                    <a href="#"><i class="far fa-shopping-cart"></i></a>
+                                </div>
+                            </div>
+                            <div class="shop-item-info">
+                                <a href="#"><h4 class="shop-item-title">Solar Panel L25</h4></a>
+                                <div class="shop-item-price">$30</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="shop-item">
+                            <div class="shop-item-img">
+                                <img src="{{ asset('template/img/shop/05.png') }}" alt="">
+                                <div class="shop-item-meta">
+                                    <a href="#"><i class="far fa-heart"></i></a>
+                                    <a href="#"><i class="far fa-shopping-cart"></i></a>
+                                </div>
+                            </div>
+                            <div class="shop-item-info">
+                                <a href="#"><h4 class="shop-item-title">Solar Panel L25</h4></a>
+                                <div class="shop-item-price">$120</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="shop-item">
+                            <div class="shop-item-img">
+                                <img src="{{ asset('template/img/shop/03.png') }}" alt="">
+                                <div class="shop-item-meta">
+                                    <a href="#"><i class="far fa-heart"></i></a>
+                                    <a href="#"><i class="far fa-shopping-cart"></i></a>
+                                </div>
+                            </div>
+                            <div class="shop-item-info">
+                                <a href="#"><h4 class="shop-item-title">Solar Panel L25</h4></a>
+                                <div class="shop-item-price">$60</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="shop-item">
+                            <div class="shop-item-img">
+                                <span class="shop-item-sale">Sale</span>
+                                <img src="{{ asset('template/img/shop/02.png') }}" alt="">
+                                <div class="shop-item-meta">
+                                    <a href="#"><i class="far fa-heart"></i></a>
+                                    <a href="#"><i class="far fa-shopping-cart"></i></a>
+                                </div>
+                            </div>
+                            <div class="shop-item-info">
+                                <a href="#"><h4 class="shop-item-title">Solar Panel L25</h4></a>
+                                <div class="shop-item-price"><del>$80</del> $90</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
