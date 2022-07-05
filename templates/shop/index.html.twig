@@ -41,7 +41,7 @@
 
                         <div class="shop-widget">
 
-                            <h4 class="shop-widget-title">Catégories</h4>
+                            <h4 class="shop-widget-title">Filtrer par catégories</h4>
                             {% for choice in form.categories.vars.choices %}
                                 <div class="form-check">
                                     <input type="checkbox" id="{{ form.categories.vars.name }}_{{ choice.value }}" name="{{ form.categories.vars.name }}" value="{{ choice.value }}" class="form-check-input"/>

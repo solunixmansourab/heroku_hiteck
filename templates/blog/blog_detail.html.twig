@@ -19,13 +19,13 @@
                     <div class="blog-single-wrapper">
                         <div class="blog-single-content">
                             <div class="blog-thumb-img">
-                                <img src="{{ asset('uploads/images/products/covers/'~post.postImage) }}" alt="thumb" width="760" height="500">
+                                <img src="{{ asset('uploads/post_images/'~post.postImage) }}" alt="thumb" width="760" height="500">
                             </div>
                             <div class="blog-info">
                                 <div class="blog-meta">
                                     <div class="blog-meta-left">
                                         <ul>
-                                            <li><i class="far fa-user-circle"></i> Créé par {{ post.user.fullName }}</li>
+                                            <li><i class="far fa-user-circle"></i> Créé par {{ post.user.firstName }}</li>
                                             <li><i class="far fa-calendar-alt"></i> {{ post.createdAt|ago(locale='fr') }}</li>
                                         </ul>
                                     </div>
@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="author-info">
                                         <h6>Auteur</h6>
-                                        <h3 class="author-name">{{ post.user.fullName }}</h3>
+                                        <h3 class="author-name">{{ post.user.firstName }}</h3>
                                         <div class="author-social">
                                             <a href="#"><i class="fab fa-facebook-f"></i></a>
                                             <a href="#"><i class="fab fa-twitter"></i></a>
@@ -141,7 +141,7 @@
                             {% for post in recents %}
                             <div class="recent-post-single">
                                 <div class="recent-post-img">
-                                    <img src="{{ asset('uploads/images/products/covers/'~post.postImage) }}" alt="thumb">
+                                    <img src="{{ asset('uploads/post_images/'~post.postImage) }}" alt="thumb">
                                 </div>
                                 <div class="recent-post-bio">
                                     <h6><a href="#">{{ post.title }}</a></h6>
