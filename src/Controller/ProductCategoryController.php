@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\ProductCategory;
 use App\Form\ProductCategoryType;
 use App\Repository\ProductCategoryRepository;
+use Flasher\Notyf\Prime\NotyfFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,15 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ProductCategoryController extends AbstractController
 {
+
+    private $flasher;
+
+
+    public function __construct(NotyfFactory $flasher)
+    {
+        $this->flasher = $flasher;
+    }
+
     /**
      * @Route("/", name="app_product_category_index", methods={"GET"})
      */
@@ -37,6 +47,8 @@ class ProductCategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $productCategoryRepository->add($productCategory, true);
+
+            $this->flasher->addFlash('success', 'Catégorie ajouté avec succès!!!');
 
             return $this->redirectToRoute('app_product_category_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -66,6 +78,8 @@ class ProductCategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $productCategoryRepository->add($productCategory, true);
 
+            $this->flasher->addFlash('success', 'Catégorie éditée avec succès!!!');
+
             return $this->redirectToRoute('app_product_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -83,6 +97,8 @@ class ProductCategoryController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$productCategory->getId(), $request->request->get('_token'))) {
             $productCategoryRepository->remove($productCategory, true);
         }
+
+        $this->flasher->addFlash('warning', 'Catégorie supprimée avec succès!!!');
 
         return $this->redirectToRoute('app_product_category_index', [], Response::HTTP_SEE_OTHER);
     }

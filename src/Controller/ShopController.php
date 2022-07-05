@@ -42,10 +42,12 @@ class ShopController extends AbstractController
     /**
      * @Route("/boutique/produit/{slug}", name="app_shop_detail")
      */
-    public function detail(Product $product, CartService $cartService): Response
+    public function detail(Product $product, CartService $cartService, ProductRepository $productRepository): Response
     {
         $panierWithData = $cartService->getFullCart();
         $total = $cartService->getTotal();
+
+        $latestProducts = $productRepository->latestProducts();
 
         foreach ($panierWithData as $key  => $value) {
             $item = $value;
@@ -55,6 +57,7 @@ class ShopController extends AbstractController
             'product' => $product,
             //'item' => $item,
             'total' => $total,
+            'latestProducts' => $latestProducts,
         ]);
     }
 

@@ -56,7 +56,7 @@ class ProductRepository extends ServiceEntityRepository
         return $this->paginator->paginate(
             $query,
             $search->page,
-            12
+            9
         );
     }
 
@@ -83,7 +83,7 @@ class ProductRepository extends ServiceEntityRepository
         //    ;
         //}
 
-        if (!empty($search->category)) {
+        if (!empty($search->categories)) {
             $query = $query
                 ->andWhere('c.id IN (:categories)')
                 ->setParameter('categories', $search->categories)
@@ -91,6 +91,16 @@ class ProductRepository extends ServiceEntityRepository
         }
 
         return $query;
+    }
+
+    public function latestProducts()
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
 //    /**

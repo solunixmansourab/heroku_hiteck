@@ -5,6 +5,7 @@ namespace App\Controller\Account;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Flasher\Notyf\Prime\NotyfFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,15 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ProfilController extends AbstractController
 {
+    /** NotyfFactory $flasher */
+    private $flasher;
+
+
+    public function __construct(NotyfFactory $flasher)
+    {
+        $this->flasher = $flasher;
+    }
+
     /**
      * @Route("", name="app_profil_index", methods={"GET"})
      */
@@ -23,7 +33,7 @@ class ProfilController extends AbstractController
         $user = $this->getUser();
 
         if(!$user) {
-            $this->addFlash('info', 'Vous devez vous connecté pour acceder à cette page');
+            $this->flasher->addFlash('info', 'Vous devez vous connecté pour acceder à cette page');
 
             return $this->redirectToRoute('app_home');
         }
@@ -42,6 +52,7 @@ class ProfilController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->add($user, true);
 
+            $this->flasher->addFlash('success', 'Profil modifié avec succès!!!');
             return $this->redirectToRoute('app_profil_index', [], Response::HTTP_SEE_OTHER);
         }
 

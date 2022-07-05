@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\Repository\ProductCategoryRepository;
 use App\Repository\ProductRepository;
 use App\Service\UploaderService;
 use Flasher\Notyf\Prime\NotyfFactory;
@@ -19,8 +20,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ProductController extends AbstractController
 {
-
-
     private $flasher;
 
 
@@ -32,9 +31,11 @@ class ProductController extends AbstractController
     /**
      * @Route("/products", name="app_products_index", methods={"GET"})
      */
-    public function allProducts(ProductRepository $productRepository, PaginatorInterface $paginator, Request $request): Response
+    public function allProducts(ProductRepository $productRepository, PaginatorInterface $paginator, Request $request, ProductCategoryRepository $productCategoryRepository): Response
     {
         // Page uniquement accessible par l'administration
+        
+        $productCategories = $productCategoryRepository->findAll();
 
         $products = $paginator->paginate(
             $productRepository->findAll(),
@@ -44,6 +45,7 @@ class ProductController extends AbstractController
 
         return $this->render('admin/products/products.html.twig', [
             'products' => $products,
+            'productCategories' => $productCategories,
         ]);
     }
 
@@ -130,6 +132,7 @@ class ProductController extends AbstractController
             $productRepository->remove($product, true);
         }
 
+        $this->flasher->addFlash('warning', 'produit supprimé avec succès!!!');
         return $this->redirectToRoute('app_products_index', [], Response::HTTP_SEE_OTHER);
     }
 }

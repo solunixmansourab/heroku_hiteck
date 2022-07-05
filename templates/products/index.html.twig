@@ -25,8 +25,9 @@
                     <div class="col-md-4 col-12 me-auto mb-md-0 mb-3">
                         <select class="form-select">
                             <option>Toutes catégories</option>
-                            <option>Fashion</option>
-                            <option>Electronics</option>
+                            {% for category in productCategories %}
+                                <option>{{category.name}}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="col-md-2 col-6">
@@ -65,7 +66,7 @@
                             </td>
                             <td><span>${{ product.price }}</span></td>
                             <td>
-                                {% for categpri in product.categories %}
+                                {% for category in product.categories %}
                                     <span class="badge rounded-pill alert-success">
                                             {{ category.name }}                    
                                     </span>

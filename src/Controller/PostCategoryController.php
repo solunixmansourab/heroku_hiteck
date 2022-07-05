@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\PostCategory;
 use App\Form\PostCategoryType;
 use App\Repository\PostCategoryRepository;
+use Flasher\Notyf\Prime\NotyfFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,13 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PostCategoryController extends AbstractController
 {
+    private $flasher;
+
+    public function __construct(NotyfFactory $flasher)
+    {
+        $this->flasher = $flasher;
+    }
+
     /**
      * @Route("/", name="app_post_category_index", methods={"GET"})
      */
@@ -38,6 +46,7 @@ class PostCategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $postCategoryRepository->add($postCategory, true);
 
+            $this->flasher->addFlash('success', 'Catégorie ajouté avec succès!!!');
             return $this->redirectToRoute('app_post_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -68,6 +77,7 @@ class PostCategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $postCategoryRepository->add($postCategory, true);
 
+            $this->flasher->addFlash('success', 'Catégorie modifiée avec succès!!!');
             return $this->redirectToRoute('app_post_category_index', [], Response::HTTP_SEE_OTHER);
         }
 

@@ -21,12 +21,12 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="blog-item">
                         <div class="blog-item-img">
-                            <img src="{{ asset('/uploads/images/products/covers/'~post.postImage) }}" alt="Thumb" width="345" height="241">
+                            <img src="{{ asset('/uploads/post_images/'~post.postImage) }}" alt="Thumb" width="345" height="241">
                         </div>
                         <div class="blog-item-info">
                             <div class="blog-item-meta">
                                 <ul>
-                                    <li><i class="far fa-user-circle"></i> Créé par {{ post.user.fullName }}</li>
+                                    <li><i class="far fa-user-circle"></i> {{ post.user.firstName }}</li>
                                     <li><i class="far fa-calendar-alt"></i> {{ post.createdAt|ago(locale='fr') }}</li>
                                 </ul>
                             </div>

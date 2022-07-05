@@ -3556,7 +3556,7 @@ price range css
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  margin-left: 0px;
+  /*margin-left: 0px;*/
   background: var(--primary-color)/**#32C36C**/;
 }
 

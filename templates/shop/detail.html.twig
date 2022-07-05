@@ -44,7 +44,11 @@
                         <p class="mb-4">{{ product.description }}</p>
                         <div class="single-item-content">
                             <h5>Status: <span>Disponible en stock</span></h5>
-                            <h5>Catégorie: <span>{{ product.category }}</span></h5>
+                            <h5>Catégories: 
+                                {% for category in product.categories %}
+                                    <span class="badge bg-primary p-2">{{ category.name }}</span>
+                                    </h5>
+                                {% endfor %}
                         </div>
                         <div class="single-item-action">
                             <h5 class="title">Quantity:</h5>
@@ -66,72 +70,29 @@
                 <div class="row">
                     <div class="col-12 mx-auto">
                         <div class="site-heading">
-                            <h2 class="site-title">Related <span>Items</span></h2>
+                            <h2 class="site-title">Derniers <span>Produits</span> Ajoutés</h2>
                         </div>
                     </div>
                 </div>
+
                 <div class="row align-items-center">
-                    <div class="col-md-6 col-lg-3">
-                        <div class="shop-item">
-                            <div class="shop-item-img">
-                                <img src="{{ asset('template/img/shop/06.png') }}" alt="">
-                                <div class="shop-item-meta">
-                                    <a href="#"><i class="far fa-heart"></i></a>
-                                    <a href="#"><i class="far fa-shopping-cart"></i></a>
+                    {% for latestProduct in latestProducts %}
+                        <div class="col-md-6 col-lg-3">
+                            <div class="shop-item">
+                                <div class="shop-item-img">
+                                    <img src="{{ asset('uploads/product_images/'~ latestProduct.coverImage) }}" alt="">
+                                    <div class="shop-item-meta">
+                                        <a href="#"><i class="far fa-heart"></i></a>
+                                        <a href="#"><i class="far fa-shopping-cart"></i></a>
+                                    </div>
+                                </div>
+                                <div class="shop-item-info">
+                                    <a href="#"><h4 class="shop-item-title">{{latestProduct.title}}</h4></a>
+                                    <div class="shop-item-price">$30</div>
                                 </div>
                             </div>
-                            <div class="shop-item-info">
-                                <a href="#"><h4 class="shop-item-title">Solar Panel L25</h4></a>
-                                <div class="shop-item-price">$30</div>
-                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="shop-item">
-                            <div class="shop-item-img">
-                                <img src="{{ asset('template/img/shop/05.png') }}" alt="">
-                                <div class="shop-item-meta">
-                                    <a href="#"><i class="far fa-heart"></i></a>
-                                    <a href="#"><i class="far fa-shopping-cart"></i></a>
-                                </div>
-                            </div>
-                            <div class="shop-item-info">
-                                <a href="#"><h4 class="shop-item-title">Solar Panel L25</h4></a>
-                                <div class="shop-item-price">$120</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="shop-item">
-                            <div class="shop-item-img">
-                                <img src="{{ asset('template/img/shop/03.png') }}" alt="">
-                                <div class="shop-item-meta">
-                                    <a href="#"><i class="far fa-heart"></i></a>
-                                    <a href="#"><i class="far fa-shopping-cart"></i></a>
-                                </div>
-                            </div>
-                            <div class="shop-item-info">
-                                <a href="#"><h4 class="shop-item-title">Solar Panel L25</h4></a>
-                                <div class="shop-item-price">$60</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="shop-item">
-                            <div class="shop-item-img">
-                                <span class="shop-item-sale">Sale</span>
-                                <img src="{{ asset('template/img/shop/02.png') }}" alt="">
-                                <div class="shop-item-meta">
-                                    <a href="#"><i class="far fa-heart"></i></a>
-                                    <a href="#"><i class="far fa-shopping-cart"></i></a>
-                                </div>
-                            </div>
-                            <div class="shop-item-info">
-                                <a href="#"><h4 class="shop-item-title">Solar Panel L25</h4></a>
-                                <div class="shop-item-price"><del>$80</del> $90</div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

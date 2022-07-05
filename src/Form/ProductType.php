@@ -21,15 +21,15 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Titre du produit',
+                'label' => 'Nom du produit',
                 'attr' => [
-                    'placeholder' => 'Titre du produit'
+                    'placeholder' => 'Nom du produit'
                 ]
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
                 'attr' => [
-                    'placeholder' => 'Description'
+                    'placeholder' => 'Description du produit'
                 ]
             ])
             ->add('price', IntegerType::class, [
@@ -39,7 +39,7 @@ class ProductType extends AbstractType
                 ]
             ])
             ->add('categories', EntityType::class, [
-                'label' => 'Catégories',
+                'label' => 'Choisir une catégorie',
                 'class' => ProductCategory::class,
                 'multiple' => true
             ])
@@ -53,7 +53,7 @@ class ProductType extends AbstractType
                 'label' => 'Promo ?',
             ])
             ->add('imageFilename', FileType::class, [
-                'label' => 'Cover Image',
+                'label' => 'Image de couverture',
                 'mapped' => false,
                 'constraints' => [
                     new Image()
