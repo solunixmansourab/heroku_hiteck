@@ -292,7 +292,7 @@ site title css
 
 .site-title {
   font-weight: 700;
-  text-transform: capitalize;
+  /*text-transform: capitalize;*/
   font-size: 40px;
   color: #253745;
   margin-top: 5px;
@@ -2399,6 +2399,7 @@ blog css
   margin-bottom: 25px;
   box-shadow: 0 0 40px 5px rgb(0 0 0 / 5%);
   transition: all .5s ease-in-out;
+  background-color: #fff;
 }
 
 .blog-item-img{
@@ -2597,6 +2598,10 @@ blog single css
   padding: 5px;
   width: 250px;
   border-radius: 50%;
+}
+
+.blog-area {
+  background-color: #f0f4f9;
 }
 
 .blog-author-img img{

@@ -34,7 +34,7 @@
                                 <a href="{{ path('app_blog_detail', {slug: post.slug}) }}">{{ post.title|capitalize }}</a>
                             </h4>
                             <p>
-                                {{ post.excerpt }} ...
+                                {{ post.excerpt|raw }} ...
                             </p>
                             <a class="blog-btn" href="{{ path('app_blog_detail', {slug: post.slug}) }}">Lire Plus<i class="fas fa-arrow-circle-right"></i></a>
                         </div>

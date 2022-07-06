@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class PostType extends AbstractType
 {
@@ -25,10 +26,9 @@ class PostType extends AbstractType
                     'placeholder' => "Titre de l'article",
                 ]
             ])
-            ->add('content', TextareaType::class, [
-                'label' => "Contenu",
-                'attr' => [
-                    'placeholder' => "Taper du contenu",
+            ->add('content', CKEditorType::class, [
+                'config' => [
+                    'toolbar' => 'full'
                 ]
             ])
             ->add('is_published', CheckboxType::class, [

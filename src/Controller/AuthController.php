@@ -72,7 +72,7 @@ class AuthController extends AbstractController
             $entityManager->flush();
 
             // do anything else you need here, like send an email
-
+            $this->flasher->addFlash('success', 'Votre compte à été créé avec succès!!! Maintenant veuillez vous connecter');
             return $this->redirectToRoute('app_login');
         }
 
