@@ -1,0 +1,19 @@
+{% for product in products %} 
+    <div class="col-md-6 col-lg-4">
+        <div class="shop-item">
+            <div class="shop-item-img">
+                <img src="{{ asset('uploads/product_images/'~product.coverImage) }}" alt="">
+                <div class="shop-item-meta">
+                    <a href="#"><i class="far fa-heart"></i></a>
+                    <a href="#"><i class="far fa-shopping-cart"></i></a>
+                </div>
+            </div>
+            <div class="shop-item-info">
+                <h4 class="product-title">
+                    <a href="{{ path('app_shop_detail', {slug: product.slug}) }}">{{ product.name }}</a>
+                </h4>
+                <div class="shop-item-price"><del>$50</del> ${{ product.price }}</div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

@@ -56,12 +56,12 @@ class ProductRepository extends ServiceEntityRepository
         return $this->paginator->paginate(
             $query,
             $search->page,
-            9
+            1
         );
     }
 
 
-    private function getSearchQuery(SearchService $search)
+    private function getSearchQuery(SearchService $search, $ignorePrice = false)
     {
         $query = $this
             ->createQueryBuilder('p')
@@ -69,19 +69,6 @@ class ProductRepository extends ServiceEntityRepository
             ->join('p.categories', 'c')
         ;
 
-        if (!empty($search->q)) {
-            $query = $query
-                ->andWhere('p.title LIKE :q')
-                ->setParameter('q', "%{$search->q}%")
-            ;
-        }
-
-        //if (!empty($search->q)) {
-        //    $query = $query
-        //        ->andWhere('p.title LIKE :q')
-        //        ->setParameter('q', "%{$search->q}%")
-        //    ;
-        //}
 
         if (!empty($search->categories)) {
             $query = $query

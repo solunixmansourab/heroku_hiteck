@@ -1,6 +1,7 @@
 {% block content %}
     <main class="page-content">
 
+
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
             <div class="breadcrumb-title pe-3">Produits</div>
@@ -60,7 +61,7 @@
                                         <img src="{{ asset('uploads/product_images/'~product.coverImage ) }} " alt="">
                                     </div>
                                     <div>
-                                        <h6 class="mb-0 product-title">{{ product.title }}</h6>
+                                        <h6 class="mb-0 product-title">{{ product.name }}</h6>
                                     </div>
                                 </a>
                             </td>

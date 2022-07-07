@@ -13,6 +13,7 @@ use App\Service\SearchService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,6 +27,7 @@ class ShopController extends AbstractController
     public function index(ProductRepository $productRepository, Request $request): Response
     {
         $data = new SearchService();
+
         $data->page = $request->get('page', 1);
 
         $form = $this->createForm(SearchForm::class, $data);
@@ -33,9 +35,17 @@ class ShopController extends AbstractController
 
         $products = $productRepository->findSearch($data);
 
+        // Ajax
+        if ($request->get('ajax')) {
+            return new JsonResponse([
+                'content' => $this->renderView('shop/filter/_products.html.twig', ['products' => $products]),
+                'pagination' => $this->renderView('shop/filter/_pagination.html.twig', ['products' => $products])
+            ]);
+        }
+
         return $this->render('shop/index.html.twig', [
             'products' => $products,
-            'form' => $form->createView(),
+            'form' =>$form->createView(),
         ]);
     }
 

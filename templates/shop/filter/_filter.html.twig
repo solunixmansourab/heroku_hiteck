@@ -1,0 +1,32 @@
+{{ form_start(form, {attr: {class: 'filter js-filter-form'}}) }}
+<div class="shop-sidebar">
+    {#
+    <div class="shop-widget">
+        <div class="shop-search-form">
+            <h4 class="shop-widget-title">Rechercher</h4>
+            {{ form_row(form.q, {attr: {class: 'form-control'}}) }}
+        </div>
+    </div>
+    #}
+
+    <div class="shop-widget">
+
+        <h4 class="shop-widget-title">Filtrer par catégorie</h4>
+        
+        {% for category in form.categories %}
+            {{ form_row(category, {attr: {class: 'form-check-input'}}) }}
+        {% endfor %}
+    </div>
+
+    <div class="shop-widget">
+        <h4 class="shop-widget-title">Filtrer par prix</h4>
+        <div class="price-range-box">
+            <div class="price-range-input">
+                <input type="text" readonly id="price-amount">
+            </div>
+            
+            <div class="price-range"></div>
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}
