@@ -34,6 +34,11 @@ class Service
      */
     private $slug;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $excerpt;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,4 +79,17 @@ class Service
 
         return $this;
     }
+
+    public function getExcerpt(): ?string
+    {
+        return $this->excerpt;
+    }
+
+    public function setExcerpt(?string $excerpt): self
+    {
+        $this->excerpt = $excerpt;
+
+        return $this;
+    }
+
 }

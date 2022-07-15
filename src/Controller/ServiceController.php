@@ -41,10 +41,12 @@ class ServiceController extends AbstractController
     public function new(Request $request, ServiceRepository $serviceRepository): Response
     {
         $service = new Service();
+
         $form = $this->createForm(ServiceType::class, $service);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $serviceRepository->add($service, true);
 
             $this->flasher->addFlash('success', 'Service ajouté avec succès!!!');
@@ -76,6 +78,7 @@ class ServiceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $serviceRepository->add($service, true);
 
             $this->flasher->addFlash('success', 'Service modifié avec succès!!!');

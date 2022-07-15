@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Service;
+use App\Repository\ServiceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,16 +13,18 @@ class ServicesController extends AbstractController
     /**
      * @Route("/services", name="app_services")
      */
-    public function index(): Response
+    public function index(ServiceRepository $serviceRepository): Response
     {
-        return $this->render('services/services_page.html.twig');
+        $services = $serviceRepository->findAll();
+
+        return $this->render('services/services_page.html.twig', compact('services'));
     }
 
     /**
-     * @Route("/services/detail", name="app_service_detail")
+     * @Route("/services/detail/{slug}", name="app_service_detail")
      */
-    public function show(): Response
+    public function show(Service $service): Response
     {
-        return $this->render('services/service_single.html.twig');
+        return $this->render('services/service_single.html.twig', compact('service'));
     }
 }

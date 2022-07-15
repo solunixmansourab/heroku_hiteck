@@ -1,7 +1,7 @@
 <div class="col-lg-4">
     <div class="checkout cart-summary">
         <div class="text-center">
-            <img src="{{ asset('static_img/avatar.png') }}" class="img-thumbnail" alt="..." width="120" height="120">
+            <img src="{{ gravatar(app.user.email) }}" class="img-thumbnail" alt="..." width="120" height="120">
             <p class="text-muted mt-2">{{ user.email }}</p>
         </div>
         <div class="container mt-4">

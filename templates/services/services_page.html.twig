@@ -3,6 +3,8 @@
 
 {% block body %}
 
+    
+
     <div class="site-breadcrumb" style="background: url({{ asset('template/img/breadcrumb/breadcrumb.jpg') }})">
         <div class="container">
             <h2 class="breadcrumb-title">Nos Services</h2>
@@ -13,6 +15,9 @@
         </div>
     </div>
 
+
+
+    {#
     <div class="service-area2 bg py-120">
         <div class="container">
             <div class="row g-4">
@@ -130,6 +135,32 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    #}
+
+    <div class="service-area2 bg py-120">
+        <div class="container">
+            <div class="row g-4">
+                {% for service in services %}
+                <div class="col-md-6 col-lg-4 col-xl-4 mb-5">
+                    <div class="service-item" style="padding-top: 85px;">
+                        <div class="service-icon">
+                            <i class="flaticon-solar-panel"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">
+                                 <a href="{{ path('app_service_detail', {slug: service.slug}) }}">{{ service.title }}</a>
+                            </h3>
+                            <p class="service-text">{{ service.excerpt|slice(0, 100) }}...</p>
+                            <div class="service-arrow">
+                                <a href="{{ path('app_service_detail', {slug: service.slug}) }}" class="service-btn"><i class="far fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Service;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -20,11 +21,17 @@ class ServiceType extends AbstractType
                     'placeholder' => 'Veuillez saisir un titre'
                 ]
             ])
-            ->add('content', TextareaType::class, [
+            ->add('content', CKEditorType::class, [
                 'label' => 'Contenu',
+                'config' => [
+                    'toolbar' => 'full'
+                ]
+            ])
+            ->add('excerpt', TextType::class, [
+                'label' => 'Extrait',
                 'attr' => [
-                    'placeholder' => 'Veuillez décrire le service'
-                ],
+                    'placeholder' => 'Saisir extrait de description'
+                ]
             ])
         ;
     }
