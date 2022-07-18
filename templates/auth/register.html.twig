@@ -31,9 +31,15 @@
                     <img src="{{ asset('template/img/logo/h_logo.jpg') }}" alt="">
                     <p class="login-small-title">Veuillez remplir tous les champs!</p>
                 </div>
+
+                {% if not registrationForm.vars.valid %}
+                    <div class="alert alert-danger text-center">
+                        <span><i class="fas fa-exclamation-triangle px-2"></i>  Une erreur s'est produite!</span>
+                    </div>
+                {% endif %}
+                
                 {{ form_start(registrationForm) }}
 
-                    {{ form_errors(registrationForm) }}
                 <div class="form-group">
                     {{ form_row(registrationForm.first_name, {attr: {'class': 'form-control', 'placeholder': 'Votre prénom'}}) }}
                 </div>

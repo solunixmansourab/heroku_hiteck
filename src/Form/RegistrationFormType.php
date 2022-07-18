@@ -23,8 +23,12 @@ class RegistrationFormType extends AbstractType
                 'required' => 'false',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Le champ ne peut pas etre vide'
-                    ])
+                        'message' => 'Tous les champs sont obligatoires'
+                    ]),
+                    new Length([
+                        'min' => 3,
+                        'minMessage' => 'Votre prénom devrait comporter au moins {{ limit }} characteres',
+                    ]),
                 ],
             ])
             ->add('last_name', TextType::class, [
@@ -32,27 +36,31 @@ class RegistrationFormType extends AbstractType
                 'required' => 'false',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Le champ ne peut pas etre vide'
-                    ])
+                        'message' => 'Tous les champs sont obligatoires'
+                    ]),
+                    new Length([
+                        'min' => 3,
+                        'minMessage' => 'Votre nom devrait comporter au moins {{ limit }} characteres',
+                    ]),
                 ],
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Email *',
+                'label' => 'Adresse email *',
                 'required' => 'false',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Le champ ne peut pas etre vide'
+                        'message' => 'Tous les champs sont obligatoires'
                     ])
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
                 'mapped' => false,
                 'required' => 'false',
-                'label' => 'Mot de passe',
+                'label' => 'Mot de passe *',
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Le champ ne peut pas etre vide',
+                        'message' => 'Tous les champs sont obligatoires',
                     ]),
                     new Length([
                         'min' => 6,

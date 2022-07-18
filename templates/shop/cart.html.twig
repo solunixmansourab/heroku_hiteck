@@ -43,11 +43,11 @@
                         <tr>
                             <td>
                                 <div class="cart-img">
-                                    <img src="{{ asset('template/img/shop/01.png') }}" alt="">
+                                    <img src="{{ asset('uploads/product_images/'~item.product.coverImage) }}" alt="">
                                 </div>
                             </td>
                             <td>
-                                <h5>{{ item.product.title }}</h5>
+                                <h5>{{ item.product.name }}</h5>
                             </td>
                             <td>
                                 <div class="cart-price">

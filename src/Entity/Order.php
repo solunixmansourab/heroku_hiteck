@@ -150,7 +150,7 @@ class Order
 
     public function __toString()
     {
-        return $this->getReference();
+        return $this->getCustomer();
     }
 
     public function getAddress(): ?Address

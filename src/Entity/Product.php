@@ -90,6 +90,7 @@ class Product
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int

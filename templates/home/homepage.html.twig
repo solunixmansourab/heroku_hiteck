@@ -1,5 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <style>
+        .partner-wrapper div {
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+
+{% endblock %}
+
 {% block body %}
 
     <div class="hero-section">
@@ -194,10 +207,10 @@
     <div class="partner-area pt-70 pb-70">
         <div class="container">
             <div class="partner-wrapper partner-slider owl-carousel owl-theme">
-                {% for partner in partners %}
-                <img src="{{ asset('uploads/images/products/covers/'~partner.image) }}" alt="thumb">
-                {% endfor %}
+                <div style="background-image: url({{ asset('assets/images/partners/biolite.png') }}); width: 300px; height:200px;">
 
+                </div>
+                
             </div>
         </div>
     </div>

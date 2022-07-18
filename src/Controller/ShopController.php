@@ -76,10 +76,18 @@ class ShopController extends AbstractController
      */
     public function checkoutPage(CartService $cartService, EntityManagerInterface $manager): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER', null, 'Accès Interdit!');
+
         $user = $this->getUser();
+
         $address = new Address();
 
+        if($user->getAddresses()->getValues() === null) {
+            $this->redirectToRoute('app_address_new');
+        }
+
         $addresses = $user->getAddresses()->getValues();
+
 
         $form = $this->createFormBuilder($address)
             ->add('adresse', EntityType::class, [
@@ -104,7 +112,7 @@ class ShopController extends AbstractController
             $orderDetails = new OrderDetails();
 
             $orderDetails->setMyOrder($order);
-            $orderDetails->setProduct($product['product']->getTitle());
+            $orderDetails->setProduct($product['product']->getName());
             $orderDetails->setQuantity($product['quantity']);
             $orderDetails->setPrice($product['product']->getPrice());
             $orderDetails->setTotal($product['product']->getPrice() * $product['quantity']);

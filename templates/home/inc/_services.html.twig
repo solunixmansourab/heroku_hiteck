@@ -10,6 +10,7 @@
             </div>
         </div>
         <div class="row g-4">
+            {% for service in services %}
             <div class="col-md-6 col-lg-4">
                 <div class="service-item">
                     <div class="service-img">
@@ -20,18 +21,17 @@
                     </div>
                     <div class="service-content">
                         <h3 class="service-title">
-                            <a href="#">Fourniture de produits</a>
+                            <a href="{{ path('app_service_detail', {slug: service.slug}) }}">{{ service.title }}</a>
                         </h3>
-                        <p class="service-text">
-                            There are many variations of passages available but the majority have suffered
-                            alteration injected.
-                        </p>
+                        <p class="service-text">{{ service.excerpt|slice(0, 100) }}...</p>
                         <div class="service-arrow">
-                            <a href="#" class="service-btn"><i class="far fa-arrow-right"></i></a>
+                            <a href="{{ path('app_service_detail', {slug: service.slug}) }}" class="service-btn"><i class="far fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>    
+            {% endfor %}
+            {#
             <div class="col-md-6 col-lg-4">
                 <div class="service-item">
                     <div class="service-img">
@@ -77,6 +77,7 @@
                     
                 </div>
             </div>
+            #}
             <div class="text-center mt-60">
                 <a href="{{ path('app_services') }}" class="theme-btn btn-lg">Voir tous nos services <i class="fas fa-eye"></i></a>
             </div>

@@ -21,7 +21,7 @@ class ServicesController extends AbstractController
     }
 
     /**
-     * @Route("/services/detail/{slug}", name="app_service_detail")
+     * @Route("/services/details/{slug}", name="app_service_detail")
      */
     public function show(Service $service): Response
     {
