@@ -59,6 +59,12 @@ class ProductType extends AbstractType
                     new Image()
                 ],
             ])
+            ->add('images', FileType::class, [
+                'label' => 'Galerie',
+                'multiple' => true,
+                'mapped' => false,
+                'required' => false,
+            ])
         ;
     }
 

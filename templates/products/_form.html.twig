@@ -21,9 +21,14 @@
                     <div class="col-12 mt-2">
                         {{ form_row(form.imageFilename, {attr: {'class': 'form-control mt-1'}}) }}
                     </div>
-                    <div class="col-md-6 mt-2">
-                        <img src="{{ asset('uploads/images/products/covers/' ~ product.coverImage) }}" alt="" width="150">
+                    <div class="col-12 mt-2">
+                        {# {{ form_row(form.images, {attr: {'class': 'form-control mt-1'}}) }} #}
                     </div>
+                    {% if product.coverImage %}
+                        <div class="col-md-6 mt-2">
+                            <img src="{{ asset('uploads/product_images/' ~ product.coverImage) }}" alt="" width="80" height="80">
+                        </div>
+                    {% endif %}
                     <div class="col-md-6"></div>
                 </div>
             </div>
@@ -52,6 +57,36 @@
                                 </div>
                             </div>
                         </div>
+                    </div><!--end row-->
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-8">
+            <div class="card shadow-none bg-light border">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-12 mt-2">
+                            {{ form_row(form.images, {attr: {'class': 'form-control mt-1'}}) }}
+                        </div>
+
+                        {% if product.images|length > 0 %}
+                            <hr>
+                            {% if app.request.attributes.get('_route') == 'app_product_edit' %}
+                                <h4>Images de la galérie</h4>
+                                <div class="row">
+                                {% for image in product.images %}
+                                    <div class="col-md-2 mx-1">
+                                        <img src="{{ asset('uploads/galerie/'~image.filename) }}" alt="" width="100" height="80">
+
+                                        {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
+                                        {# <a href="{{ path('annonces_delete_image', {id: image.id})}}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}">Supprimer</a> #}
+                                    </div>
+                                {% endfor %}
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                        
                     </div><!--end row-->
                 </div>
             </div>

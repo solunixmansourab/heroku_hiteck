@@ -12,6 +12,7 @@ class UploaderService
     
     const POST_IMAGES = 'post_images';
     const PRODUCT_IMAGES = 'product_images';
+    const PRODUCT_GALERIE = 'product_galerie';
 
 
     public function __construct(string $uploadsPath)
@@ -38,6 +39,21 @@ class UploaderService
     public function uploadProductImage(UploadedFile $uploadedFile): string
     {
         $destination = $this->uploadsPath. '/' .self::PRODUCT_IMAGES;
+
+        $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+
+        $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$uploadedFile->guessExtension();
+        $uploadedFile->move(
+            $destination,
+            $newFilename
+        );
+        
+        return $newFilename;
+    }
+
+    public function uploadGalerieImages(UploadedFile $uploadedFile): string
+    {
+        $destination = $this->uploadsPath. '/' .self::PRODUCT_GALERIE;
 
         $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
 

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\ProductCategoryRepository;
@@ -64,10 +65,31 @@ class ProductController extends AbstractController
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form->get('imageFilename')->getData();
 
+            
             if ($uploadedFile) {
                 $newFilename = $uploaderService->uploadProductImage($uploadedFile);
 
                 $product->setCoverImage($newFilename);
+            }
+
+            /** @var UploadedFile $images */
+            $images = $form->get('images')->getData();
+            
+            foreach($images as $image){
+                // On génère un nouveau nom de fichier
+                $fichier = md5(uniqid()).'.'.$image->guessExtension();
+                
+                // On copie le fichier dans le dossier uploads
+                $image->move(
+                    $this->getParameter('galerie_directory'),
+                    $fichier
+                );
+                
+                // On crée l'image dans la base de données
+                $img = new Image();
+                
+                $img->setFilename($fichier);
+                $product->addImage($img);
             }
 
             $productRepository->add($product, true);
@@ -109,6 +131,25 @@ class ProductController extends AbstractController
                 $newFilename = $uploaderService->uploadProductImage($uploadedFile);
 
                 $product->setCoverImage($newFilename);
+            }
+
+            $images = $form->get('images')->getData();
+
+            foreach($images as $image){
+                // On génère un nouveau nom de fichier
+                $fichier = md5(uniqid()).'.'.$image->guessExtension();
+                
+                // On copie le fichier dans le dossier uploads
+                $image->move(
+                    $this->getParameter('galerie_directory'),
+                    $fichier
+                );
+                
+                // On crée l'image dans la base de données
+                $img = new Image();
+
+                $img->setFilename($fichier);
+                $product->addImage($img);
             }
 
             $productRepository->add($product, true);

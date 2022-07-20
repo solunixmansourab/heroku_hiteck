@@ -19,10 +19,12 @@
                     <div class="item-gallery">
                         <div class="flexslider-thumbnails">
                             <ul class="slides">
-                                <li data-thumb="/template/img/shop/01.png" rel="adjustX:10, adjustY:">
-                                    <img src="{{ asset('template/img/shop/01.png') }}" alt="#">
-                                </li>
-                                <li data-thumb="/template/img/shop/02.png">
+                                {% for image in product.images %}
+                                    <li data-thumb="{{ asset('uploads/galerie/'~image.filename) }}" rel="adjustX:10, adjustY:">
+                                        <img src="{{ asset('uploads/galerie/'~image.filename) }}" alt="{{ image.filename }}">
+                                    </li>
+                                {% endfor %}
+                                {# <li data-thumb="/template/img/shop/02.png">
                                     <img src="{{ asset('template/img/shop/02.png') }}" alt="#">
                                 </li>
                                 <li data-thumb="/template/img/shop/03.png">
@@ -30,7 +32,7 @@
                                 </li>
                                 <li data-thumb="/template/img/shop/04.png">
                                     <img src="{{ asset('template/img/shop/04.png') }}" alt="#">
-                                </li>
+                                </li> #}
                             </ul>
                         </div>
                     </div>
@@ -80,14 +82,14 @@
                         <div class="col-md-6 col-lg-3">
                             <div class="shop-item">
                                 <div class="shop-item-img">
-                                    <img src="{{ asset('uploads/product_images/'~ latestProduct.coverImage) }}" alt="">
+                                    <img src="{{ asset('uploads/product_images/'~ latestProduct.coverImage) }}" alt="{{ product.name }}">
                                     <div class="shop-item-meta">
                                         <a href="#"><i class="far fa-heart"></i></a>
                                         <a href="#"><i class="far fa-shopping-cart"></i></a>
                                     </div>
                                 </div>
                                 <div class="shop-item-info">
-                                    <a href="#"><h4 class="shop-item-title">{{latestProduct.title}}</h4></a>
+                                    <a href="#"><h4 class="shop-item-title">{{latestProduct.name}}</h4></a>
                                     <div class="shop-item-price">$30</div>
                                 </div>
                             </div>

@@ -172,28 +172,7 @@
             </div>
             <div class="row">
                 {% for post in latest %}
-                <div class="col-md-6 col-lg-4">
-                    <div class="blog-item">
-                        <div class="blog-item-img">
-                            <img src="{{ asset('uploads/post_images/'~post.postImage) }}" alt="Thumb">
-                        </div>
-                        <div class="blog-item-info">
-                            <div class="blog-item-meta">
-                                <ul>
-                                    <li><i class="far fa-user"></i> Créé par : {{ post.user.firstName }}</li>
-                                    <li><i class="far fa-calendar-alt"></i> {{ post.createdAt|ago(locale='fr') }}</li>
-                                </ul>
-                            </div>
-                            <h4 class="blog-title">
-                                <a href="{{ path('app_post_show', {slug: post.slug}) }}">{{ post.title }}</a>
-                            </h4>
-                            <p>
-                                {{ post.excerpt|raw }} ...
-                            </p>
-                            <a class="blog-btn" href="{{ path('app_post_show', {slug: post.slug}) }}">Lire Plus<i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
+                    {% include 'home/inc/_posts.html.twig' %}
                 {% endfor %}
             </div>
             <div class="text-center mt-50">
@@ -204,7 +183,7 @@
 
     {% include 'home/inc/_team.html.twig' %}
 
-    <div class="partner-area pt-70 pb-70">
+    {# <div class="partner-area pt-70 pb-70">
         <div class="container">
             <div class="partner-wrapper partner-slider owl-carousel owl-theme">
                 <div style="background-image: url({{ asset('assets/images/partners/biolite.png') }}); width: 300px; height:200px;">
@@ -213,7 +192,7 @@
                 
             </div>
         </div>
-    </div>
+    </div> #}
 
 {% endblock %}
 
