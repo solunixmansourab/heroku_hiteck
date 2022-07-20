@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220706134410 extends AbstractMigration
+final class Version20220720131848 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -21,6 +21,8 @@ final class Version20220706134410 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE SEQUENCE addresses_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE SEQUENCE contact_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE SEQUENCE image_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE order_details_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE "orders_id_seq" INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE partners_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
@@ -28,9 +30,13 @@ final class Version20220706134410 extends AbstractMigration
         $this->addSql('CREATE SEQUENCE posts_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE product_category_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE products_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE SEQUENCE service_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE users_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE TABLE addresses (id INT NOT NULL, user_id INT DEFAULT NULL, first_name VARCHAR(255) DEFAULT NULL, last_name VARCHAR(255) DEFAULT NULL, email VARCHAR(255) DEFAULT NULL, phone VARCHAR(255) DEFAULT NULL, adresse VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_6FCA7516A76ED395 ON addresses (user_id)');
+        $this->addSql('CREATE TABLE contact (id INT NOT NULL, full_name VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, subject VARCHAR(255) NOT NULL, phone VARCHAR(255) DEFAULT NULL, message TEXT NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE image (id INT NOT NULL, product_id INT DEFAULT NULL, filename VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE INDEX IDX_C53D045F4584665A ON image (product_id)');
         $this->addSql('CREATE TABLE order_details (id INT NOT NULL, my_order_id INT DEFAULT NULL, product VARCHAR(255) NOT NULL, quantity VARCHAR(255) NOT NULL, price DOUBLE PRECISION NOT NULL, total DOUBLE PRECISION NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_845CA2C1BFCDF877 ON order_details (my_order_id)');
         $this->addSql('CREATE TABLE "orders" (id INT NOT NULL, customer_id INT DEFAULT NULL, address_id INT DEFAULT NULL, order_price DOUBLE PRECISION NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, reference VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id))');
@@ -47,6 +53,7 @@ final class Version20220706134410 extends AbstractMigration
         $this->addSql('CREATE TABLE product_product_category (product_id INT NOT NULL, product_category_id INT NOT NULL, PRIMARY KEY(product_id, product_category_id))');
         $this->addSql('CREATE INDEX IDX_437017AA4584665A ON product_product_category (product_id)');
         $this->addSql('CREATE INDEX IDX_437017AABE6903FD ON product_product_category (product_category_id)');
+        $this->addSql('CREATE TABLE service (id INT NOT NULL, title VARCHAR(255) NOT NULL, content TEXT NOT NULL, slug VARCHAR(255) NOT NULL, excerpt VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE users (id INT NOT NULL, first_name VARCHAR(255) NOT NULL, last_name VARCHAR(255) NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_1483A5E9E7927C74 ON users (email)');
         $this->addSql('CREATE TABLE messenger_messages (id BIGSERIAL NOT NULL, body TEXT NOT NULL, headers TEXT NOT NULL, queue_name VARCHAR(190) NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, available_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, delivered_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, PRIMARY KEY(id))');
@@ -62,6 +69,7 @@ final class Version20220706134410 extends AbstractMigration
         $this->addSql('DROP TRIGGER IF EXISTS notify_trigger ON messenger_messages;');
         $this->addSql('CREATE TRIGGER notify_trigger AFTER INSERT OR UPDATE ON messenger_messages FOR EACH ROW EXECUTE PROCEDURE notify_messenger_messages();');
         $this->addSql('ALTER TABLE addresses ADD CONSTRAINT FK_6FCA7516A76ED395 FOREIGN KEY (user_id) REFERENCES users (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE image ADD CONSTRAINT FK_C53D045F4584665A FOREIGN KEY (product_id) REFERENCES products (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE order_details ADD CONSTRAINT FK_845CA2C1BFCDF877 FOREIGN KEY (my_order_id) REFERENCES "orders" (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE "orders" ADD CONSTRAINT FK_E52FFDEE9395C3F3 FOREIGN KEY (customer_id) REFERENCES users (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE "orders" ADD CONSTRAINT FK_E52FFDEEF5B7AF75 FOREIGN KEY (address_id) REFERENCES addresses (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
@@ -80,12 +88,15 @@ final class Version20220706134410 extends AbstractMigration
         $this->addSql('ALTER TABLE order_details DROP CONSTRAINT FK_845CA2C1BFCDF877');
         $this->addSql('ALTER TABLE posts DROP CONSTRAINT FK_885DBAFA12469DE2');
         $this->addSql('ALTER TABLE product_product_category DROP CONSTRAINT FK_437017AABE6903FD');
+        $this->addSql('ALTER TABLE image DROP CONSTRAINT FK_C53D045F4584665A');
         $this->addSql('ALTER TABLE product_product_category DROP CONSTRAINT FK_437017AA4584665A');
         $this->addSql('ALTER TABLE addresses DROP CONSTRAINT FK_6FCA7516A76ED395');
         $this->addSql('ALTER TABLE "orders" DROP CONSTRAINT FK_E52FFDEE9395C3F3');
         $this->addSql('ALTER TABLE posts DROP CONSTRAINT FK_885DBAFAA76ED395');
         $this->addSql('ALTER TABLE products DROP CONSTRAINT FK_B3BA5A5AA76ED395');
         $this->addSql('DROP SEQUENCE addresses_id_seq CASCADE');
+        $this->addSql('DROP SEQUENCE contact_id_seq CASCADE');
+        $this->addSql('DROP SEQUENCE image_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE order_details_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE "orders_id_seq" CASCADE');
         $this->addSql('DROP SEQUENCE partners_id_seq CASCADE');
@@ -93,8 +104,11 @@ final class Version20220706134410 extends AbstractMigration
         $this->addSql('DROP SEQUENCE posts_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE product_category_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE products_id_seq CASCADE');
+        $this->addSql('DROP SEQUENCE service_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE users_id_seq CASCADE');
         $this->addSql('DROP TABLE addresses');
+        $this->addSql('DROP TABLE contact');
+        $this->addSql('DROP TABLE image');
         $this->addSql('DROP TABLE order_details');
         $this->addSql('DROP TABLE "orders"');
         $this->addSql('DROP TABLE partners');
@@ -103,6 +117,7 @@ final class Version20220706134410 extends AbstractMigration
         $this->addSql('DROP TABLE product_category');
         $this->addSql('DROP TABLE products');
         $this->addSql('DROP TABLE product_product_category');
+        $this->addSql('DROP TABLE service');
         $this->addSql('DROP TABLE users');
         $this->addSql('DROP TABLE messenger_messages');
     }
