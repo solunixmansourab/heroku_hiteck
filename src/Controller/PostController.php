@@ -57,8 +57,6 @@ class PostController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            dd($post->getContent());
-
             $post->setExcerpt(substr($post->getContent(), 0, 78));
             $post->setUser($user);
 
