@@ -23,8 +23,13 @@ class ServicesController extends AbstractController
     /**
      * @Route("/services/details/{slug}", name="app_service_detail")
      */
-    public function show(Service $service): Response
+    public function show(Service $service, ServiceRepository $serviceRepository): Response
     {
-        return $this->render('services/service_single.html.twig', compact('service'));
+        $services = $serviceRepository->findAll();
+
+        return $this->render('services/service_single.html.twig', [
+            'service' => $service,
+            'services' => $services,
+        ]);
     }
 }

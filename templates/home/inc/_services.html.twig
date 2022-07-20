@@ -10,6 +10,8 @@
             </div>
         </div>
         <div class="row g-4">
+        {% if services|length > 0 %}
+        
             {% for service in services %}
             <div class="col-md-6 col-lg-4">
                 <div class="service-item">
@@ -31,6 +33,7 @@
                 </div>
             </div>    
             {% endfor %}
+        {% endif %}
             {#
             <div class="col-md-6 col-lg-4">
                 <div class="service-item">

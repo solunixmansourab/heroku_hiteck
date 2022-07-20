@@ -22,12 +22,14 @@
                         <div class="widget category">
                             <h4 class="widget-title">Tous les services</h4>
                             <div class="category-list">
-                                <a href="#"><i class="far fa-angle-double-right"></i>Ingénierie et Etudes de Faisabilité</a>
-                                <a href="#"><i class="far fa-angle-double-right"></i>Conseil en Stratégie Energétique</a>
+                                {% for service in services %}
+                                <a href="{{ path('app_service_detail', {slug: service.slug}) }}"><i class="far fa-angle-double-right"></i>{{ service.title }}</a>
+                                {% endfor %}
+                                {# <a href="#"><i class="far fa-angle-double-right"></i>Conseil en Stratégie Energétique</a>
                                 <a href="#"><i class="far fa-angle-double-right"></i>Gestion de Projets</a>
                                 <a href="#"><i class="far fa-angle-double-right"></i>Fourniture de Produits</a>
                                 <a href="#"><i class="far fa-angle-double-right"></i>Installation et Maintenance</a>
-                                <a href="#"><i class="far fa-angle-double-right"></i>Formation</a>
+                                <a href="#"><i class="far fa-angle-double-right"></i>Formation</a> #}
                             </div>
                         </div>
                     </div>
