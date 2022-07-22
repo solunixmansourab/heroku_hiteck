@@ -1,3 +1,8 @@
+{% set content1 = 'HI-TECH SOLUTIONS SARL, S’engage à vous garantir un retour sur investissement immédiat en offrant des produits et services innovants' %}
+{% set content2 = 'HI-TECH SOLUTIONS SARL, vous accompagnent tout au long du cycle de vie de vos projets en analysant et formalisant avec vous, les besoins de votre structure' %}
+{% set content3 = 'Les équipements et logiciels fournis et installés ont une garantie à partir de la date de livraison des équipements' %}
+
+
 <div class="service-area2 bg py-120">
     <div class="container">
         <div class="row">
@@ -10,31 +15,7 @@
             </div>
         </div>
         <div class="row g-4">
-        {% if services|length > 0 %}
-        
-            {% for service in services %}
-            <div class="col-md-6 col-lg-4">
-                <div class="service-item">
-                    <div class="service-img">
-                        <img src="{{ asset('template/img/service/01.jpg') }}" alt="">
-                    </div>
-                    <div class="service-icon">
-                        <i class="flaticon-solar-panel"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3 class="service-title">
-                            <a href="{{ path('app_service_detail', {slug: service.slug}) }}">{{ service.title }}</a>
-                        </h3>
-                        <p class="service-text">{{ service.excerpt|slice(0, 100) }}...</p>
-                        <div class="service-arrow">
-                            <a href="{{ path('app_service_detail', {slug: service.slug}) }}" class="service-btn"><i class="far fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-            {% endfor %}
-        {% endif %}
-            {#
+            
             <div class="col-md-6 col-lg-4">
                 <div class="service-item">
                     <div class="service-img">
@@ -45,14 +26,11 @@
                     </div>
                     <div class="service-content">
                         <h3 class="service-title">
-                            <a href="#">Installation & Maintenance</a>
+                            <a href="{{ path('app_services') }}">Fourniture de Produits</a>
                         </h3>
-                        <p class="service-text">
-                            There are many variations of passages available but the majority have suffered
-                            alteration injected.
-                        </p>
+                        <p class="service-text">{{ content1|slice(0, 98) }}...</p>
                         <div class="service-arrow">
-                            <a href="#" class="service-btn"><i class="far fa-arrow-right"></i></a>
+                            <a href="{{ path('app_services') }}" class="service-btn"><i class="far fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -60,27 +38,45 @@
             <div class="col-md-6 col-lg-4">
                 <div class="service-item">
                     <div class="service-img">
-                        <img src="{{ asset('template/img/service/03.jpg') }}" alt="">
+                        <img src="{{ asset('template/img/service/01.jpg') }}" alt="">
                     </div>
                     <div class="service-icon">
                         <i class="flaticon-solar-panel-2"></i>
                     </div>
                     <div class="service-content">
                         <h3 class="service-title">
-                            <a href="#">Gestion de projets</a>
+                            <a href="{{ path('app_services') }}">Gestion de projets</a>
                         </h3>
-                        <p class="service-text">
-                            There are many variations of passages available but the majority have suffered
-                            alteration injected.
-                        </p>
+                        <p class="service-text">{{ content2|slice(0, 98) }} ...</p>
                         <div class="service-arrow">
-                            <a href="#" class="service-btn"><i class="far fa-arrow-right"></i></a>
+                            <a href="{{ path('app_services') }}" class="service-btn"><i class="far fa-arrow-right"></i></a>
                         </div>
                     </div>
                     
                 </div>
             </div>
-            #}
+
+            <div class="col-md-6 col-lg-4">
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="{{ asset('template/img/service/03.jpg') }}" alt="">
+                    </div>
+                    <div class="service-icon">
+                        <i class="flaticon-drill"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">
+                            <a href="{{ path('app_services') }}">Installation et Maintenance</a>
+                        </h3>
+                        <p class="service-text">{{ content3|slice(0, 100) }} ...</p>
+                        <div class="service-arrow">
+                            <a href="{{ path('app_services') }}" class="service-btn"><i class="far fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+           
             <div class="text-center mt-60">
                 <a href="{{ path('app_services') }}" class="theme-btn btn-lg">Voir tous nos services <i class="fas fa-eye"></i></a>
             </div>

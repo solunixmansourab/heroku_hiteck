@@ -1660,7 +1660,7 @@ service css
 
 .service-title a{
   font-size: 22px;
-  color: #253745;
+  color: var(--primary-color)
 }
 
 .service-title a:hover{
