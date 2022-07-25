@@ -47,11 +47,11 @@ class ContactType extends AbstractType
             ->add('message', TextareaType::class, [
                 'label' => false,
                 'required' => false,
+                'row_attr' => ['class' => 'text-editor', 'id' => '...'],
                 'attr' => [
                     'placeholder' => 'Votre message ici'
                 ]
             ])
-            ->add('submit', SubmitType::class)
         ;
     }
 

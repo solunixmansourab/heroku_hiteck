@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use Doctrine\ORM\EntityManagerInterface;
+use Flasher\Notyf\Prime\NotyfFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +18,7 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact", name="app_contact")
      */
-    public function index(Request $request, EntityManagerInterface $em, MailerInterface $mailer): Response
+    public function index(Request $request, EntityManagerInterface $em, MailerInterface $mailer, NotyfFactory $flasher): Response
     {
         $contact = new Contact();
 
@@ -36,6 +37,9 @@ class ContactController extends AbstractController
             ;
 
             $mailer->send($email);
+
+            $flasher->addFlash('success', 'Votre message à été envoyé!');
+            return $this->redirectToRoute('app_home');
         }
 
         return $this->render('contact/contact_page.html.twig', [

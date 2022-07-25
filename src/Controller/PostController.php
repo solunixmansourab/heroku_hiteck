@@ -34,12 +34,15 @@ class PostController extends AbstractController
      */
     public function allPosts(PostRepository $postRepository, PaginatorInterface $paginator, Request $request, PostCategoryRepository $postCategoryRepository): Response
     {
+        $user = $this->getUser();
+
         $posts = $paginator->paginate($postRepository->findAll(), $request->query->getInt('page', 1), 15);
         $postCategories = $postCategoryRepository->findAll();
 
         return $this->render('admin/posts/posts.html.twig', [
             'posts' => $posts,
             'post_categories' => $postCategories,
+            'user' => $user,
         ]);
     }
 

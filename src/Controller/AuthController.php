@@ -47,6 +47,8 @@ class AuthController extends AbstractController
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
     {
         if ($this->getUser()) {
+
+            $this->flasher->addFlash('error', 'Vous etes déja connecté!');
             return $this->redirectToRoute('app_home');
         }
 

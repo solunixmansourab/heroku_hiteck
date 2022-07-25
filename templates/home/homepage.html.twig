@@ -183,16 +183,9 @@
 
     {% include 'home/inc/_team.html.twig' %}
 
-    {# <div class="partner-area pt-70 pb-70">
-        <div class="container">
-            <div class="partner-wrapper partner-slider owl-carousel owl-theme">
-                <div style="background-image: url({{ asset('assets/images/partners/biolite.png') }}); width: 300px; height:200px;">
-
-                </div>
-                
-            </div>
-        </div>
-    </div> #}
+    <div class="partner-area pt-70 pb-70">
+        {% include 'home/inc/_partners.html.twig' %}
+    </div>
 
 {% endblock %}
 
