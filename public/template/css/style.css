@@ -3082,9 +3082,9 @@ shop css
 
 .shop-item-img{
   position: relative;
-  background: #F1F8FF;
+  background: #f77700;
   border-radius: 5px;
-  padding: 25px;
+  padding: 2px;
   z-index: 1;
 }
 
@@ -3373,9 +3373,9 @@ shop css
 
 .shop-item-single .flexslider-thumbnails img{
   width: 100%;
-  background: #F1F8FF;
+  background: #f77700;
   border-radius: 5px;
-  padding: 50px;
+  padding: 2px;
 }
 
 .shop-item-single .flex-control-thumbs{
@@ -3384,7 +3384,7 @@ shop css
 
 .shop-item-single .flex-control-thumbs img{
   padding: 0;
-  border: none;
+  border: 1px solid #f77700;
 }
 
 .single-item-title{
@@ -3423,7 +3423,7 @@ shop css
 
 .single-item-content span{
   font-weight: normal;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 .single-item-action{
